@@ -8,6 +8,7 @@ async function seed() {
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
+    port: process.env.DB_PORT || 3306,
   });
 
   try {
@@ -42,11 +43,11 @@ async function seed() {
     const categoryByName = Object.fromEntries(categories.map((c) => [c.name, c.id]));
 
     const products = [
-      ['Wireless Headphones', 'High quality sound, noise cancelling', 2999.0, 50, 'headphones.jpg', 'Electronics'],
-      ['Smartphone Case', 'Protective case for all phones', 499.0, 100, 'case.jpg', 'Electronics'],
-      ['Men T-Shirt', 'Cotton comfortable t-shirt', 799.0, 75, 'tshirt.jpg', 'Clothing'],
-      ['Python Programming Book', 'Learn Python from scratch', 1200.0, 30, 'book.jpg', 'Books'],
-      ['Coffee Mug', 'Ceramic mug 350ml', 350.0, 60, 'mug.jpg', 'Home & Kitchen'],
+      ['Wireless Headphones', 'High quality sound, noise cancelling', 2999.0, 50, 'headphones.svg', 'Electronics'],
+      ['Smartphone Case', 'Protective case for all phones', 499.0, 100, 'case.svg', 'Electronics'],
+      ['Men T-Shirt', 'Cotton comfortable t-shirt', 799.0, 75, 'tshirt.svg', 'Clothing'],
+      ['Python Programming Book', 'Learn Python from scratch', 1200.0, 30, 'book.svg', 'Books'],
+      ['Coffee Mug', 'Ceramic mug 350ml', 350.0, 60, 'mug.svg', 'Home & Kitchen'],
     ];
 
     for (const [name, description, price, stock, imageUrl, categoryName] of products) {

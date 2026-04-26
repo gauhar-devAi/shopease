@@ -163,11 +163,27 @@ const initCategoriesAndProducts = async () => {
 
   const urlParams = new URLSearchParams(window.location.search);
   const urlCat = urlParams.get('category') || '';
+  const urlCatName = urlParams.get('categoryName') || '';
   const urlSearch = urlParams.get('search') || '';
 
+  let selectedCategory = urlCat;
+
   const catSelect = document.getElementById('categoryFilter');
-  if (catSelect && urlCat) {
-    catSelect.value = urlCat;
+  if (catSelect) {
+    if (urlCat) {
+      catSelect.value = urlCat;
+      selectedCategory = catSelect.value || '';
+    } else if (urlCatName) {
+      const normalized = urlCatName.trim().toLowerCase();
+      const match = Array.from(catSelect.options).find(
+        (option) => option.textContent.trim().toLowerCase() === normalized
+      );
+
+      if (match) {
+        catSelect.value = match.value;
+        selectedCategory = match.value;
+      }
+    }
   }
   
   const searchInput = document.getElementById('searchInput');
@@ -175,6 +191,6 @@ const initCategoriesAndProducts = async () => {
     searchInput.value = urlSearch;
   }
 
-  loadProducts(urlSearch, urlCat);
+  loadProducts(urlSearch, selectedCategory);
 };
 initCategoriesAndProducts();

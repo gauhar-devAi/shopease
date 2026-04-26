@@ -27,6 +27,22 @@ app.get('/', (req, res) => {
   res.json({ message: 'ShopEase API is running! 🛒' });
 });
 
+// DB health check route
+app.get('/test-db', async (req, res) => {
+  try {
+    const [rows] = await db.query('SELECT 1 AS ok');
+    res.json({
+      message: 'Database connection is working',
+      result: rows[0]
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Database connection failed',
+      error: error.message
+    });
+  }
+});
+
 const PORT = process.env.PORT || 5000;
 // Admin stats route
 app.get('/api/admin/stats', protect, adminOnly, async (req, res) => {

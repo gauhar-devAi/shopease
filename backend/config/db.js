@@ -9,6 +9,7 @@ const pool = mysql.createPool({
   user: process.env.DB_USER,         // from .env file
   password: process.env.DB_PASSWORD, // from .env file
   database: process.env.DB_NAME,     // from .env file
+  port: process.env.DB_PORT || 3306, // Railway may provide a custom DB port
   waitForConnections: true,
   connectionLimit: 10,               // max 10 connections at once
   queueLimit: 0
@@ -22,7 +23,7 @@ pool.getConnection((err, connection) => {
   if (err) {
     console.error('❌ Database connection failed:', err.message);
   } else {
-    console.log('✅ Database connected successfully!');
+    console.log('✅ Railway Database connected!');
     connection.release(); // release connection back to pool
   }
 });

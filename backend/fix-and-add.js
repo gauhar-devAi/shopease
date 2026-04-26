@@ -7,7 +7,11 @@ async function run() {
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
+    port: process.env.DB_PORT || 3306,
   });
+
+  const [categories] = await connection.query('SELECT id, name FROM categories');
+  const categoryByName = Object.fromEntries(categories.map((c) => [c.name, c.id]));
 
   // Fix the missing images for the Laptop Stand and Gaming Mouse
   await connection.query('UPDATE products SET image_url = ? WHERE name = ?', [
@@ -28,7 +32,7 @@ async function run() {
       price: 6500.00,
       stock: 40,
       image_url: 'https://images.unsplash.com/photo-1595225476474-87563907a212?w=800&q=80',
-      category_id: 1
+      category_name: 'Electronics'
     },
     {
       name: 'Classic Leather Watch',
@@ -36,7 +40,7 @@ async function run() {
       price: 12000.00,
       stock: 25,
       image_url: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80',
-      category_id: 2
+      category_name: 'Clothing'
     },
     {
       name: 'Eco Yoga Mat',
@@ -44,7 +48,7 @@ async function run() {
       price: 2500.00,
       stock: 100,
       image_url: 'https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=800&q=80',
-      category_id: 4
+      category_name: 'Home & Kitchen'
     },
     {
       name: 'True Wireless Earbuds',
@@ -52,7 +56,7 @@ async function run() {
       price: 8900.00,
       stock: 75,
       image_url: 'https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=800&q=80',
-      category_id: 1
+      category_name: 'Electronics'
     },
     {
       name: 'Travel Backpack',
@@ -60,7 +64,7 @@ async function run() {
       price: 4800.00,
       stock: 60,
       image_url: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80',
-      category_id: 2
+      category_name: 'Clothing'
     },
     {
       name: 'Vintage Film Camera',
@@ -68,17 +72,23 @@ async function run() {
       price: 15500.00,
       stock: 10,
       image_url: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80',
-      category_id: 1
+      category_name: 'Electronics'
     }
   ];
 
   let insertCount = 0;
   for (const p of newProducts) {
+    const categoryId = categoryByName[p.category_name];
+    if (!categoryId) {
+      console.warn(`Skipped ${p.name}: category ${p.category_name} not found`);
+      continue;
+    }
+
     const [existing] = await connection.query('SELECT id FROM products WHERE name = ?', [p.name]);
     if (existing.length === 0) {
       await connection.query(
         'INSERT INTO products (name, description, price, stock, image_url, category_id) VALUES (?, ?, ?, ?, ?, ?)',
-        [p.name, p.description, p.price, p.stock, p.image_url, p.category_id]
+        [p.name, p.description, p.price, p.stock, p.image_url, categoryId]
       );
       insertCount++;
     }
