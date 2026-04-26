@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Orders - ShopEase</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="stylesheet" href="../css/admin.css"/>
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <div id="adminAccessNotice" style="display:none" class="admin-access-notice">
+    <div class="admin-access-card">
+      <div class="lock-icon" style="font-size: 48px; margin-bottom: 15px;">🔒</div>
+      <h2 style="color: #f2f5ff; margin-bottom: 15px;">Access Restricted</h2>
+      <p style="color: #a8b5c5; font-size: 1.05rem; line-height: 1.6; margin-bottom: 25px;">
+        This securely protected dashboard is exclusively available for authorized administrators. Please log in with a valid admin account to proceed.
+      </p>
+      <a href="../login.html" class="btn btn-primary" style="padding: 12px 30px; font-size: 1.05rem; border-radius: 8px;">Go to Secure Login</a>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-brand">👑 ShopEase Admin</div>
+    <ul class="sidebar-menu">
+      <li><a href="dashboard.html">
+        <span class="icon">📊</span><span>Dashboard</span></a>
+      </li>
+      <li><a href="products.html">
+        <span class="icon">🛍️</span><span>Products</span></a>
+      </li>
+      <li><a href="orders.html" class="active">
+        <span class="icon">📦</span><span>Orders</span></a>
+      </li>
+      <li><a href="../index.html">
+        <span class="icon">🏠</span><span>View Store</span></a>
+      </li>
+      <li><a href="#" onclick="adminLogout()">
+        <span class="icon">🚪</span><span>Logout</span></a>
+      </li>
+    </ul>
+  </aside>
+
+  <main class="admin-main">
+    <div class="topbar">
+      <h2>📦 All Orders</h2>
+    </div>
+
+    <div class="table-container" style="margin-top:30px">
+      <div class="table-header">
+        <h3>Order Management</h3>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Items</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Update</th>
+          </tr>
+        </thead>
+        <tbody id="allOrdersTable">
+          <tr>
+            <td colspan="7" 
+              style="text-align:center; padding:30px; color:#999">
+              Loading orders...
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/admin.js"></script>
+<script>
+  loadAllOrders();
+</script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+/* ================================
+   ADMIN LAYOUT
+================================ */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 250px;
+  background: #ffffff;
+  color: #282c3f;
+  padding: 0;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid #eaeaec;
+}
+
+.sidebar-brand {
+  padding: 25px 20px;
+  background: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ff3f6c;
+  border-bottom: 1px solid #eaeaec;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 15px 0;
+}
+
+.sidebar-menu li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  color: #535766;
+  font-size: 15px;
+  transition: all 0.3s;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.sidebar-menu li a:hover,
+.sidebar-menu li a.active {
+  background: #fff0f3;
+  color: #ff3f6c;
+  border-left: 4px solid #ff3f6c;
+  padding-left: 16px;
+}
+
+.sidebar-menu .icon {
+  font-size: 18px;
+}
+
+/* MAIN CONTENT */
+.admin-main {
+  margin-left: 250px;
+  flex: 1;
+  background: #f2f4f8;
+  min-height: 100vh;
+}
+
+/* TOP BAR */
+.topbar {
+  background: #ffffff;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eaeaec;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.topbar h2 {
+  color: #282c3f;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.topbar .admin-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #535766;
+  font-size: 14px;
+}
+
+/* ================================
+   STATS CARDS
+================================ */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 30px;
+}
+
+.stat-card {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(40,44,63,0.08);
+  border-top: 4px solid #ff3f6c;
+  transition: transform 0.2s ease-in-out;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(40,44,63,0.12);
+}
+
+.stat-card .stat-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.stat-card .stat-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: #282c3f;
+}
+
+.stat-card .stat-label {
+  color: #7e818c;
+  font-size: 14px;
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+/* ================================
+   ADMIN TABLE
+================================ */
+.table-container {
+  background: #ffffff;
+  border-radius: 8px;
+  margin: 0 30px 30px;
+  box-shadow: 0 1px 4px rgba(40,44,63,0.08);
+  overflow: hidden;
+  border: 1px solid #eaeaec;
+}
+
+.table-header {
+  padding: 20px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eaeaec;
+}
+
+.table-header h3 {
+  font-size: 18px;
+  color: #282c3f;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th {
+  background: #f8f9fa;
+  padding: 14px 20px;
+  text-align: left;
+  font-size: 13px;
+  color: #535766;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #eaeaec;
+}
+
+table td {
+  padding: 14px 20px;
+  font-size: 14px;
+  color: #282c3f;
+  border-bottom: 1px solid #f5f5f5;
+  vertical-align: middle;
+}
+
+table tr:hover td {
+  background: #fff0f3;
+}
+
+/* ================================
+   MODAL (Add/Edit Product)
+================================ */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 200;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal {
+  background: white;
+  border-radius: 12px;
+  padding: 35px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.modal h3 {
+  font-size: 22px;
+  color: #282c3f;
+  margin-bottom: 25px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eaeaec;
+}
+
+.modal .form-group {
+  margin-bottom: 18px;
+}
+
+.modal .form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #535766;
+  margin-bottom: 6px;
+}
+
+.modal .form-group input,
+.modal .form-group select,
+.modal .form-group textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #d4d5d9;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.3s;
+  font-family: inherit;
+}
+
+.modal .form-group input:focus,
+.modal .form-group select:focus,
+.modal .form-group textarea:focus {
+  border-color: #ff3f6c;
+}
+
+.modal .form-group textarea {
+  height: 90px;
+  resize: vertical;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.modal-buttons .btn {
+  flex: 1;
+}
+
+/* ================================
+   RESPONSIVE ADMIN
+================================ */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px;
+  }
+
+  .sidebar-brand span,
+  .sidebar-menu li a span {
+    display: none;
+  }
+
+  .admin-main {
+    margin-left: 60px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    padding: 15px;
+  }
+
+  .table-container {
+    margin: 0 15px 20px;
+    overflow-x: auto;
+  }
+}

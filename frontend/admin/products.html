@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manage Products - ShopEase</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="stylesheet" href="../css/admin.css"/>
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <div id="adminAccessNotice" style="display:none" class="admin-access-notice">
+    <div class="admin-access-card">
+      <div class="lock-icon" style="font-size: 48px; margin-bottom: 15px;">🔒</div>
+      <h2 style="color: #f2f5ff; margin-bottom: 15px;">Access Restricted</h2>
+      <p style="color: #a8b5c5; font-size: 1.05rem; line-height: 1.6; margin-bottom: 25px;">
+        This securely protected dashboard is exclusively available for authorized administrators. Please log in with a valid admin account to proceed.
+      </p>
+      <a href="../login.html" class="btn btn-primary" style="padding: 12px 30px; font-size: 1.05rem; border-radius: 8px;">Go to Secure Login</a>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-brand">👑 ShopEase Admin</div>
+    <ul class="sidebar-menu">
+      <li><a href="dashboard.html">
+        <span class="icon">📊</span><span>Dashboard</span></a>
+      </li>
+      <li><a href="products.html" class="active">
+        <span class="icon">🛍️</span><span>Products</span></a>
+      </li>
+      <li><a href="orders.html">
+        <span class="icon">📦</span><span>Orders</span></a>
+      </li>
+      <li><a href="../index.html">
+        <span class="icon">🏠</span><span>View Store</span></a>
+      </li>
+      <li><a href="#" onclick="adminLogout()">
+        <span class="icon">🚪</span><span>Logout</span></a>
+      </li>
+    </ul>
+  </aside>
+
+  <main class="admin-main">
+    <div class="topbar">
+      <h2>🛍️ Manage Products</h2>
+      <button class="btn btn-primary" onclick="openAddModal()">
+        + Add Product
+      </button>
+    </div>
+
+    <div class="table-container" style="margin-top:30px">
+      <div class="table-header">
+        <h3>All Products</h3>
+        <span id="productCount" style="color:#888; font-size:14px"></span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="productsTable">
+          <tr>
+            <td colspan="6" 
+              style="text-align:center; padding:30px; color:#999">
+              Loading products...
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<!-- ADD/EDIT PRODUCT MODAL -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal">
+    <h3 id="modalTitle">Add New Product</h3>
+
+    <input type="hidden" id="productId"/>
+
+    <div class="form-group">
+      <label>Product Name *</label>
+      <input type="text" id="productName" placeholder="e.g. Wireless Headphones"/>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <textarea id="productDesc" 
+        placeholder="Write product description..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>Price (Rs.) *</label>
+      <input type="number" id="productPrice" placeholder="e.g. 1999"/>
+    </div>
+    <div class="form-group">
+      <label>Stock Quantity</label>
+      <input type="number" id="productStock" placeholder="e.g. 50"/>
+    </div>
+    <div class="form-group">
+      <label>Category</label>
+      <select id="productCategory">
+        <option value="">Select Category</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Image URL</label>
+      <input type="text" id="productImage" 
+        placeholder="e.g. headphones.jpg"/>
+    </div>
+
+    <div class="modal-buttons">
+      <button class="btn btn-primary" onclick="saveProduct()">
+        💾 Save Product
+      </button>
+      <button class="btn btn-danger" onclick="closeModal()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/admin.js"></script>
+<script>
+  loadAdminProducts();
+  loadCategoriesForModal();
+</script>
+</body>
+</html>

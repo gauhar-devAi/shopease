@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ShopEase - Online Store</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="home-page">
+
+  <div class="market-top">
+    <span>Free shipping above Rs. 2,500</span>
+    <span>Top marketplace picks updated daily</span>
+  </div>
+
+  <header class="market-nav-wrap">
+    <nav class="market-nav">
+      <a class="market-logo" href="index.html">ShopEase</a>
+
+      <div class="market-search-wrap">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search brands, products, and categories"
+        />
+        <select id="categoryFilter">
+          <option value="">All Categories</option>
+        </select>
+        <button class="btn btn-primary" onclick="filterProducts()">Search</button>
+      </div>
+
+      <ul class="market-actions">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="orders.html">Orders</a></li>
+        <li class="cart-icon">
+          <a href="cart.html">Cart <span class="cart-badge" id="cartCount">0</span></a>
+        </li>
+        <li id="authLink"><a href="login.html">Login</a></li>
+        <li id="changePasswordLink" style="display:none"><a href="change-password.html">Password</a></li>
+        <li id="logoutBtn" style="display:none"><a href="#" onclick="logout()">Logout</a></li>
+      </ul>
+    </nav>
+
+    <div class="market-links" id="discover">
+      <a href="index.html#products">Today's Deals</a>
+      <a href="index.html?category=2#products">Fashion</a>
+      <a href="index.html?category=1#products">Electronics</a>
+      <a href="index.html?category=3#products">Books</a>
+      <a href="index.html?category=4#products">Home & Kitchen</a>
+      <a href="admin/dashboard.html" id="adminLink" style="display:none;">👑 Admin</a>
+    </div>
+  </header>
+
+  <section class="market-hero">
+    <div class="hero-panel">
+      <p class="eyebrow">Big Sale Week</p>
+      <h1>Style meets value, every single day.</h1>
+      <p>Discover premium picks across fashion, gadgets, books, and home essentials with fast delivery.</p>
+      <a href="#products" class="btn btn-primary">Explore Products</a>
+    </div>
+    <div class="hero-cards">
+      <div>
+        <h3>Best Seller</h3>
+        <p>Wireless audio deals up to 30% off</p>
+      </div>
+      <div>
+        <h3>New Arrival</h3>
+        <p>Fresh drops curated for your style</p>
+      </div>
+      <div>
+        <h3>Trusted by</h3>
+        <p>50K+ customers across Pakistan</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="products-section">
+    <h2 class="section-title" id="products">Featured Collection</h2>
+    <div class="products-grid" id="productsGrid">
+      <!-- Products injected via JS -->
+    </div>
+  </section>
+
+  <footer class="home-footer">
+    <div class="footer-content">
+      <div class="footer-section about">
+        <h3>ShopEase</h3>
+        <p>ShopEase is proudly made by <strong>GAUHAR ALI KHAN</strong>. We strive to provide the best e-commerce experience in Pakistan, offering top-quality products, unmatched customer service, and fast delivery right to your doorstep.</p>
+      </div>
+      <div class="footer-section links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section social">
+        <h3>Connect With Us</h3>
+        <p class="social-tagline">Follow us on social media for the latest updates and deals</p>
+        <div class="social-links">
+          <a href="#" class="social-link-btn">
+            <span class="social-icon">f</span>
+            <span class="social-name">Facebook</span>
+          </a>
+          <a href="#" class="social-link-btn">
+            <span class="social-icon">📷</span>
+            <span class="social-name">Instagram</span>
+          </a>
+          <a href="#" class="social-link-btn">
+            <span class="social-icon">𝕏</span>
+            <span class="social-name">Twitter</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 ShopEase Marketplace. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/products.js"></script>
+</body>
+</html>

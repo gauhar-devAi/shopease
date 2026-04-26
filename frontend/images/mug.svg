@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#172554"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <path d="M420 250h330v280c0 70-57 127-127 127h-76c-70 0-127-57-127-127z" fill="#63ead6"/>
+  <path d="M750 320h80c55 0 95 38 95 86s-40 86-95 86h-80" fill="none" stroke="#7aa8ff" stroke-width="30"/>
+  <path d="M500 210c0-40 30-40 30-80" stroke="#e2e8f0" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <path d="M590 210c0-40 30-40 30-80" stroke="#e2e8f0" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <text x="600" y="730" fill="#dbeafe" font-size="52" text-anchor="middle" font-family="Arial, sans-serif">Coffee Mug</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#0b1324"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect x="430" y="140" width="340" height="540" rx="55" fill="#131c30" stroke="#7aa8ff" stroke-width="12"/>
+  <rect x="470" y="200" width="260" height="360" rx="26" fill="#0c1428"/>
+  <circle cx="600" cy="618" r="22" fill="#63ead6"/>
+  <text x="600" y="710" fill="#dbeafe" font-size="52" text-anchor="middle" font-family="Arial, sans-serif">Smartphone Case</text>
+</svg>
