@@ -34,8 +34,34 @@ const registerUser = async () => {
       return showAlert('error', data.message);
     }
 
-    showAlert('success', 'Account created! Redirecting to login...');
-    setTimeout(() => { window.location.href = 'login.html'; }, 2000);
+    showAlert('success', 'Account created! Logging you in...');
+
+    // Auto-login right after registration so user lands directly in store.
+    const loginResponse = await fetch(`${API_URL}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+
+    const loginData = await loginResponse.json();
+
+    if (!loginResponse.ok) {
+      showAlert('success', 'Account created! Please login.');
+      return setTimeout(() => { window.location.href = 'login.html'; }, 1200);
+    }
+
+    localStorage.setItem('token', loginData.token);
+    localStorage.setItem('user', JSON.stringify(loginData.user));
+
+    if (typeof checkAndShowAdminLink === 'function') {
+      checkAndShowAdminLink();
+    }
+
+    setTimeout(() => {
+      window.location.href = loginData.user && loginData.user.role === 'admin'
+        ? 'admin/dashboard.html'
+        : 'index.html';
+    }, 800);
 
   } catch (error) {
     showAlert('error', 'Something went wrong. Try again.');

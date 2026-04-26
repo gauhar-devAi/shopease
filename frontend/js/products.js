@@ -25,6 +25,10 @@ const resolveImageUrl = (imageUrl, name) => {
   return `images/${trimmed}`;
 };
 
+const viewProduct = (productId) => {
+  window.location.href = `product.html?id=${productId}`;
+};
+
 const showProductsMessage = (message, buttonText = 'Retry') => {
   const grid = document.getElementById('productsGrid');
   if (!grid) return;
@@ -112,7 +116,7 @@ const displayProducts = (products) => {
   }
 
   grid.innerHTML = products.map(product => `
-    <div class="product-card">
+    <div class="product-card" role="button" tabindex="0" onclick="viewProduct(${product.id})">
       <img 
         src="${resolveImageUrl(product.image_url, product.name)}"
         alt="${product.name}" 
@@ -131,7 +135,7 @@ const displayProducts = (products) => {
         <button 
           class="btn btn-primary" 
           style="width:100%"
-          onclick="addToCart(${product.id}, '${product.name.replace(/'/g, "\\'")}', ${product.price}, '${resolveImageUrl(product.image_url, product.name)}')"
+          onclick="event.stopPropagation(); addToCart(${product.id}, '${product.name.replace(/'/g, "\\'")}', ${product.price}, '${resolveImageUrl(product.image_url, product.name)}')"
           ${product.stock === 0 ? 'disabled' : ''}>
           🛒 Add to Cart
         </button>

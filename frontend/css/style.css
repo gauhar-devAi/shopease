@@ -1677,6 +1677,7 @@ body.home-page .product-card {
   border: 1px solid #e6ebf4;
   box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
   border-radius: 14px;
+  cursor: pointer;
 }
 
 body.home-page .product-card:hover {
@@ -1714,6 +1715,113 @@ body.home-page .product-card .stock {
 
 body.home-page .product-card .stock.low {
   color: #b91c1c;
+}
+
+body.home-page .product-detail-page {
+  max-width: 1400px;
+  margin: 16px auto 0;
+  padding: 0 18px 46px;
+}
+
+body.home-page .product-detail-shell {
+  margin-bottom: 28px;
+}
+
+body.home-page .detail-card {
+  display: grid;
+  grid-template-columns: minmax(260px, 500px) 1fr;
+  gap: 20px;
+  background: #ffffff;
+  border: 1px solid #e6ebf4;
+  border-radius: 18px;
+  box-shadow: 0 12px 22px rgba(15, 23, 42, 0.08);
+  padding: 20px;
+}
+
+body.home-page .detail-media {
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+body.home-page .detail-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 340px;
+  object-fit: cover;
+}
+
+body.home-page .detail-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+body.home-page .detail-back-link {
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+body.home-page .detail-back-link:hover {
+  color: #ff3f6c;
+}
+
+body.home-page .detail-content h1 {
+  color: #0f172a;
+  font-size: clamp(26px, 4vw, 38px);
+  line-height: 1.15;
+}
+
+body.home-page .detail-content p {
+  color: #475569;
+  line-height: 1.65;
+  max-width: 60ch;
+}
+
+body.home-page .detail-meta {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+body.home-page .detail-price {
+  font-size: clamp(24px, 3.8vw, 34px);
+  font-weight: 800;
+  color: #be123c;
+}
+
+body.home-page .detail-actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+body.home-page .detail-actions .btn {
+  min-width: 150px;
+}
+
+body.home-page .detail-actions .outline-like {
+  background: #ffffff;
+  color: #be123c;
+  border: 1px solid #fecdd3;
+}
+
+body.home-page .detail-actions .outline-like:hover {
+  border-color: #fda4af;
+  color: #9f1239;
+}
+
+body.home-page .related-shell {
+  margin-top: 10px;
+}
+
+body.home-page .related-shell .section-title {
+  margin-bottom: 14px;
 }
 
 body.home-page .home-footer {
@@ -1766,6 +1874,15 @@ body.home-page .home-footer .footer-bottom {
 
   body.home-page .market-hero {
     grid-template-columns: 1fr;
+  }
+
+  body.home-page .detail-card {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  body.home-page .detail-media img {
+    min-height: 260px;
   }
 }
 
