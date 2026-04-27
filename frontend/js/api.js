@@ -1,9 +1,5 @@
 // Base URL of our backend
-const API_URL = window.__API_URL__ || (
-  window.location.protocol === 'file:'
-    ? 'http://localhost:5000/api'
-    : `${window.location.origin}/api`
-);
+const API_URL = 'https://backend-amber-theta-48.vercel.app/api';
 
 // Helper: get token from localStorage
 const getToken = () => localStorage.getItem('token');
