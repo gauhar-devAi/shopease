@@ -1,5 +1,9 @@
 // Base URL of our backend
-const API_URL = 'http://localhost:5000/api';
+const API_URL = window.__API_URL__ || (
+  window.location.protocol === 'file:'
+    ? 'http://localhost:5000/api'
+    : `${window.location.origin}/api`
+);
 
 // Helper: get token from localStorage
 const getToken = () => localStorage.getItem('token');

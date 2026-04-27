@@ -2,18 +2,50 @@
 const mysql = require('mysql2');
 require('dotenv').config();
 
-// Create a connection pool
-// A pool manages multiple connections automatically - better than single connection
-const pool = mysql.createPool({
-  host: process.env.DB_HOST,         // from .env file
-  user: process.env.DB_USER,         // from .env file
-  password: process.env.DB_PASSWORD, // from .env file
-  database: process.env.DB_NAME,     // from .env file
-  port: process.env.DB_PORT || 3306, // Railway may provide a custom DB port
-  waitForConnections: true,
-  connectionLimit: 10,               // max 10 connections at once
-  queueLimit: 0
-});
+// Build config from DATABASE_URL (preferred in hosting) or individual DB_* vars.
+const buildPoolConfig = () => {
+  const commonConfig = {
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
+  };
+
+  if (process.env.DATABASE_URL) {
+    const dbUrl = new URL(process.env.DATABASE_URL);
+
+    const config = {
+      host: dbUrl.hostname,
+      user: decodeURIComponent(dbUrl.username),
+      password: decodeURIComponent(dbUrl.password),
+      database: dbUrl.pathname.replace(/^\//, ''),
+      port: dbUrl.port ? Number(dbUrl.port) : 3306,
+      ...commonConfig
+    };
+
+    if (process.env.DB_SSL === 'true') {
+      config.ssl = { rejectUnauthorized: false };
+    }
+
+    return config;
+  }
+
+  const config = {
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 3306,
+    ...commonConfig
+  };
+
+  if (process.env.DB_SSL === 'true') {
+    config.ssl = { rejectUnauthorized: false };
+  }
+
+  return config;
+};
+
+const pool = mysql.createPool(buildPoolConfig());
 
 // Convert pool to use promises (lets us use async/await)
 const db = pool.promise();

@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 const db = require('./config/db');
@@ -11,9 +12,19 @@ const productRoutes = require('./routes/productRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 
 const app = express();
+const frontendPath = path.join(__dirname, '..', 'frontend');
 
-app.use(cors());
+const corsOrigin = process.env.CORS_ORIGIN || '*';
+const allowedOrigins = corsOrigin === '*'
+  ? true
+  : corsOrigin.split(',').map((origin) => origin.trim());
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
 app.use(express.json());
+app.use(express.static(frontendPath));
 
 // Connect routes to the app
 // All auth routes start with /api/auth
@@ -24,7 +35,19 @@ app.use('/api/orders', orderRoutes);
 
 // Base route
 app.get('/', (req, res) => {
+  res.sendFile(path.join(frontendPath, 'index.html'));
+});
+
+app.get('/api', (req, res) => {
   res.json({ message: 'ShopEase API is running! 🛒' });
+});
+
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
 });
 
 // DB health check route
